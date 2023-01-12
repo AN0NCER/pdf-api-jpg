@@ -18,7 +18,7 @@ if (!isset($_GET['url'])) {
     }else{
         http_response_code(404);
     }
-    write_log($log_file, "[ERROR]: Not found 'url': '".$_GET['url']."'");
+    write_log($log_file, "[ERROR]: Not found 'url'");
     return;
 }
 
