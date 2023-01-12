@@ -51,10 +51,10 @@ $success = $imagick->writeImages($_folder . '/myimage.jpg', false);
 
 if ($success) {
     // Вызов записи лога об успешном выполнении скрипта
-    write_log($log_file, "[SUCCESS]: Script executed successfully");
+    write_log($log_file, "[SUCCESS]: Script executed successfully ".$_GET['url']);
 } else {
     // Вызов записи лога об ошибке
-    write_log($log_file, "[ERROR]: Error writing image to file");
+    write_log($log_file, "[ERROR]: Error writing image to file".$_GET['url']);
 }
 
 $return = array();
