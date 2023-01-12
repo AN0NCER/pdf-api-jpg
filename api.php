@@ -8,6 +8,8 @@ function write_log($log_file, $message) {
     file_put_contents($log_file, $log_string . PHP_EOL, FILE_APPEND);
 }
 
+write_log($log_file, "[SCRIPT]: A request came to the server");
+
 $_pdf = "temp.pdf";
 $_folder = "images/";
 
