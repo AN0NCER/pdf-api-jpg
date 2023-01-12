@@ -1,4 +1,12 @@
 <?php
+$log_file = 'log.txt';
+
+// Запись логов в файл
+function write_log($log_file, $message) {
+    $time = date("Y-m-d H:i:s");
+    $log_string = "[" . $time . "]" . $message;
+    file_put_contents($log_file, $log_string . PHP_EOL, FILE_APPEND);
+}
 
 $_pdf = "temp.pdf";
 $_folder = "images/";
@@ -10,6 +18,7 @@ if (!isset($_GET['url'])) {
     }else{
         http_response_code(404);
     }
+    write_log($log_file, "[ERROR]: Not found 'url': '".$_GET['url']."'");
     return;
 }
 
@@ -36,7 +45,15 @@ if (isset($_GET['w']) || isset($_GET['h'])) {
 
 $imagick->readImage($_pdf);
 $pages = $imagick->getNumberImages();
-$imagick->writeImages($_folder . '/myimage.jpg', false);
+$success = $imagick->writeImages($_folder . '/myimage.jpg', false);
+
+if ($success) {
+    // Вызов записи лога об успешном выполнении скрипта
+    write_log($log_file, "[SUCCESS]: Script executed successfully");
+} else {
+    // Вызов записи лога об ошибке
+    write_log($log_file, "[ERROR]: Error writing image to file");
+}
 
 $return = array();
 
