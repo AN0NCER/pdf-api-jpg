@@ -1,2 +1,2 @@
-# pdf-api-jpg
-Makes the conversion of pdf files to jpg images on the server with responses returned
+# PHP Convertor
+This script generates from a pdf document to an image. The image has only one use, after which it will be deleted. Script returns JSON to images to upload
